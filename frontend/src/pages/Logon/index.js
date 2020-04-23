@@ -17,8 +17,13 @@ export default function Logon() {
   async function handleLogin(e) {
     e.preventDefault();
 
+    const data = {
+      login,
+      password
+    }
+
     try {
-      const response = await api.post("session", { login, password });
+      const response = await api.post("session", data);
 
       localStorage.setItem("userLogin", login);
       localStorage.setItem("userName", response.data.name);
@@ -33,7 +38,7 @@ export default function Logon() {
     <div className="logon-container">
       <section className="form"></section>
 
-      <form>
+      <form onSubmit={handleLogin}>
         <h1>Logon</h1>
 
         <input
@@ -48,11 +53,9 @@ export default function Logon() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Link className="back-link" to="/profile">
           <button className="button" type="submit">
             Login
           </button>
-        </Link>
 
         <Link className="back-link" to="/register">
           <FiLogIn size={16} color="#938cc3" />

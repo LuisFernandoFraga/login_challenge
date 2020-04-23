@@ -27,7 +27,7 @@ export default function Register() {
     try {
       const response = await api.post("users", data);
 
-      alert("User ${response.data.name} registered with success.");
+      alert(`User ${response.data.name} registered with success.`);
 
       history.push("/");
     } catch (error) {
@@ -39,7 +39,9 @@ export default function Register() {
 
   return (
     <div className="register-container">
+
       <section className="form"></section>
+
       <form onSubmit={handleRegister}>
         <h1>Register</h1>
 
@@ -61,11 +63,9 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Link className="back-link" to="/">
           <button className="button" type="submit">
             Register
-          </button>
-        </Link>
+          </button> 
 
         <Link className="back-link" to="/">
           <FiArrowLeft size={16} color="#938cc3" />
